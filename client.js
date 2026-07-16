@@ -9,8 +9,17 @@ export const axiosInstance = axios.create({
 
 
 export const jobaxiosInstance = axios.create({
-    baseURL: "https://backend-github-engineering.vercel.app/job",
+    baseURL: import.meta.env.VITE_BASE_URL_JOB,
     headers: {
         "Content-Type": "application/json",
     },
+})
+
+
+export const applyAxiosInstance = axios.create({
+    baseURL:import.meta.env.ITE_BASE_URL_APPLY,
+    headers:{
+        "Content-Type": "application/json",
+    },
+    withCredentials: true
 })
