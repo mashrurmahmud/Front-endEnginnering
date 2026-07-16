@@ -7,6 +7,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import HomeLayOut from './Layout/HomeLayOut'
 import JobLayou from '../Components/JobLayOut/JobLayou'
 import CreateJob from '../Components/CreateJobform/CreateJob'
+import AuthLayOut from '../Components/AuthLayOut'
+import Login from '../Components/LoginForm'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +27,10 @@ function App() {
 
       
 
+     </Route>
+     <Route path='/auth' element={<AuthLayOut/>}>
+     <Route path='/auth/login' element={<Login/>}/>
+       
      </Route>
    </Routes>
    </BrowserRouter>

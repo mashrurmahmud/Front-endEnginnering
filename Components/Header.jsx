@@ -34,7 +34,7 @@ const Header = () => {
 
          <button className="bg-sky-700 w-[150px] h-auto px-3 py-2 rounded-xl">
              <Link
-            to="/login"
+            to="/auth/login"
             className="btn btn-outline"
           >
             Login
