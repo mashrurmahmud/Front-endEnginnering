@@ -12,6 +12,8 @@ import {
 import { Link } from "react-router-dom";
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { registerUser } from "../../ALLapi";
+import Swal from "sweetalert2";
 
 
 const user = z.object({
@@ -40,9 +42,9 @@ const Register = () => {
 
 
  
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
 
-    console.log(data)
+    
 
 
 
@@ -51,10 +53,43 @@ const Register = () => {
 
 
     const {terms, ...rest} = data;
+
+   try{
+
+    const response = await registerUser(rest);
+    console.log(response)
+    if(response){
+
+        Swal.fire({
+            icon: "success",
+            title: "Success",
+            text: response?.data?.message,
+            footer: "<a href=\"#\">Why do I have this issue?</a>"
+        });
+
+
+    }
+
+   }catch(error){
+     console.log(error)
+        
+
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message,
+        footer: "<a href=\"#\">Why do I have this issue?</a>"
+});
+
+
+
+    
+   }
+    
     
 
 
-    console.log(terms)
+   
     
 
    
