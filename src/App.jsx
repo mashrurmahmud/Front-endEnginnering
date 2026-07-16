@@ -10,6 +10,9 @@ import CreateJob from '../Components/CreateJobform/CreateJob'
 import AuthLayOut from '../Components/AuthLayOut'
 import Login from '../Components/LoginForm'
 import Register from '../Components/Registration/Registration'
+import Dashboard from '../Components/DashBoard/Dashboard'
+import BasicInfo from '../Components/Basic-info/Basic-info'
+import Job from '../Components/DashBoard/Job'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -33,6 +36,12 @@ function App() {
      <Route path='/auth/login' element={<Login/>}/>
      <Route path='/auth/register' element={<Register/>}/>
        
+     </Route>
+     <Route path='/dashboard' element={<Dashboard/>}>
+      <Route path='/dashboard/basic-info' element={<BasicInfo/>}/>
+      <Route path='/dashboard/jobs' element={<Job/>}/>
+
+      
      </Route>
    </Routes>
    </BrowserRouter>
