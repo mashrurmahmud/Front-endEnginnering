@@ -29,7 +29,7 @@ const Dashboard = () => {
     return (
         <div className='container mx-auto'>
             <Header/>
-          <div className='flex gap-2'>
+          <div className='flex h-auto gap-2'>
               <aside
         className={`fixed lg:static top-0 left-0 z-50 h-full w-64 bg-slate-900 text-white transition-all duration-300
         ${open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}

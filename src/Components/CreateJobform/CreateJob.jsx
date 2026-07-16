@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { set } from 'zod';
 import ProfileUpload from './CreateIconProfile';
+import { useJobCreate } from '../../../hook';
 
 const CreateJob = () => {
     const {register,handleSubmit, formState:{errors}} = useForm()
@@ -11,6 +12,9 @@ const CreateJob = () => {
     const [skillSting, setSkillSting] = useState('');
     const [eexperience, setExperience] = useState('');
     const [experienceArray, setExperienceArray] = useState([]);
+    const cretorJob = useJobCreate();
+
+
 
 
 
@@ -204,15 +208,9 @@ const CreateJob = () => {
           <label className="block mb-2 font-medium">
             Benefits (comma separated)
           </label>
-          <input
-            type="text"
-            name="benefits"
-            {...register("benefits")}
-         
-            className="input input-bordered w-full"
-            placeholder="Health Insurance, Bonus, Remote Work"
-            required
-          />
+          <textarea className='textarea textarea-bordered w-full' {...register("benefits")} rows="4">
+
+          </textarea>
         </div>
 
         {/* Description */}
@@ -223,6 +221,7 @@ const CreateJob = () => {
           <textarea
             rows="6"
             name="description"
+            {...register("description")}
            
             className="textarea textarea-bordered w-full"
             placeholder="Write job description..."
@@ -230,7 +229,7 @@ const CreateJob = () => {
           ></textarea>
         </div>
         <div>
-            <ProfileUpload/>
+            <ProfileUpload imgUrl={imgUrl} setImagurl={setImagurl}/>
         </div>
 
         <div className="md:col-span-2">

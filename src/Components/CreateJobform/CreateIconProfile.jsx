@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { FaCamera, FaCloudUploadAlt } from "react-icons/fa";
 
-const ProfileUpload = () => {
+const ProfileUpload = ({setImagurl}) => {
   const [image, setImage] = useState(null);
   const fileRef = useRef();
 
@@ -9,8 +9,9 @@ const ProfileUpload = () => {
     const file = e.target.files[0];
 
     if (!file) return;
-
+    console.log(URL.createObjectURL(file));
     setImage(URL.createObjectURL(file));
+    setImagurl(URL.createObjectURL(file));
   };
 
   return (

@@ -19,3 +19,9 @@ export const createJob = async(data)=>{
     return response;
 }
 
+
+export const getJobs = async()=>{
+    const response = await jobaxiosInstance.get("/job");
+    return response;
+}
+
