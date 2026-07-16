@@ -21,6 +21,7 @@ const user = z.object({
     email:z.string().email({error:"Invalid email"}).nonempty({error:"Email is required"}),
     password:z.string().nonempty({error:"Password is required"}).min(6,{error:"Password must be at least 6 characters"}),
     terms:z.boolean({error:"You must agree to the terms and conditions"}).default(false),
+    username:z.string().nonempty({error:"Username is required"}),
 })
 
 const Register = () => {
