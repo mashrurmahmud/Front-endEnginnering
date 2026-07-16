@@ -12,7 +12,7 @@ import {
 import { Link } from "react-router-dom";
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { registerUser } from "../../ALLapi";
+import { registerUser } from "../../../ALLapi";
 import Swal from "sweetalert2";
 
 
