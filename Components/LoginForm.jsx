@@ -1,13 +1,50 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { zodResolver } from '@hookform/resolvers/zod';
+import *  as z from 'zod'
+import { loginUser } from "../ALLapi";
+import Swal from "sweetalert2";
+
+
+const user = z.object({
+    email:z.string().email({error:"Invalid email"}).nonempty({error:"Email is required"}),
+    password:z.string().nonempty({error:"Password is required"}).min(6,{error:"Password must be at least 6 characters"}),
+})
 
 const Login = () => {
-    const {register, handleSubmit} = useForm();
+    const {register, handleSubmit, formState:{errors}} = useForm({
+        resolver: zodResolver(user)
+
+    });
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = (data)=>{
+  const onSubmit = async(data)=>{
+
+    try{
+        const res = await  loginUser(data);
+        Swal.fire({
+        position: "center",
+        icon: "success",
+        title: res?.data?.message,
+        showConfirmButton: false,
+        timer: 1500
+});
+
+   navigate('/')
+
+    }catch(error){
+        Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error?.response?.data?.message,
+        footer: "<a href=\"#\">Why do I have this issue?</a>"
+        });
+    }
+    
+     
      
   }
 
