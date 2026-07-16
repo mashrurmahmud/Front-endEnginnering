@@ -43,7 +43,7 @@ const Header = () => {
 
         <button className="bg-black w-[150px] h-auto px-3 py-2 rounded-xl">
               <Link
-            to="/register"
+            to="/auth/register"
             className="btn text-white btn-primary"
           >
             Sign Up

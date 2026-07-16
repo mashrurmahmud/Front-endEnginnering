@@ -9,6 +9,7 @@ import JobLayou from '../Components/JobLayOut/JobLayou'
 import CreateJob from '../Components/CreateJobform/CreateJob'
 import AuthLayOut from '../Components/AuthLayOut'
 import Login from '../Components/LoginForm'
+import Register from '../Components/Registration/Registration'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,6 +31,7 @@ function App() {
      </Route>
      <Route path='/auth' element={<AuthLayOut/>}>
      <Route path='/auth/login' element={<Login/>}/>
+     <Route path='/auth/register' element={<Register/>}/>
        
      </Route>
    </Routes>
