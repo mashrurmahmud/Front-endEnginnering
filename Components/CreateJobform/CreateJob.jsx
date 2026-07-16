@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { set } from 'zod';
+import ProfileUpload from './CreateIconProfile';
 
 const CreateJob = () => {
     const {register,handleSubmit, formState:{errors}} = useForm()
@@ -8,12 +9,25 @@ const CreateJob = () => {
     const [imgUrl, setImagurl] = useState('')
     const[skillArray, setSkillArray] = useState([])
     const [skillSting, setSkillSting] = useState('');
-    const [experience, setExperience] = useState('');
+    const [eexperience, setExperience] = useState('');
     const [experienceArray, setExperienceArray] = useState([]);
 
 
-    
 
+
+    const handleExperience = (e)=>{
+        e.preventDefault()
+        
+        setExperienceArray((prev) => [...prev, eexperience]);
+        setExperience('');
+    }
+    
+     const handleSkill = (e)=>{
+        e.preventDefault()
+        
+        setSkillArray((prev) => [...prev, skillSting]);
+        setSkillSting('');
+     }
 
 
     const imageUrl = async(e)=>{
@@ -25,14 +39,18 @@ const CreateJob = () => {
 
     }
 
-    const onsubmit  = (data)=>{
+    const onsubmit  = (data,e)=>{
+        
+
         console.log(`data`,data)
 
         const{skills, experience, ...rest} = data;
-        setSkillSting(skills);
-        setSkillArray((prev) => [...prev, skills]);
-        setExperience(experience);
-        setExperienceArray((prev) => [...prev, experience]);
+        
+       
+        setExperienceArray((prev) => [...prev, eexperience]);
+        setExperience('');
+        
+        e.target.reset()
 
         
     
@@ -129,11 +147,19 @@ const CreateJob = () => {
           <input
             type="text"
             {...register("experience")}
+
+             onChange={e=> setExperience(e.target.value)}
             
             className="input input-bordered w-full"
             placeholder="2 Years"
             required
           />
+          <button onClick={handleExperience} className='w-[120px] text-white h-auto bg-black p-3'>ADD</button>
+           {
+              experienceArray.map((exp, index) => (
+                <p className='text-black bg-red-400 my-2' key={index}>{exp}</p>
+              ))
+           }
         </div>
 
         {/* Logo */}
@@ -165,8 +191,12 @@ const CreateJob = () => {
             className="input input-bordered w-full"
             placeholder="React, Node.js, MongoDB"
             required
+            onChange={e => setSkillSting(e.target.value)}
           />
-          <button className='w-[200px] h-auto bg-sky-600 cursor-pointer p-3'>ADD</button>
+          <button onClick={handleSkill} className='w-[100px] h-auto bg-sky-600 cursor-pointer p-3'>ADD</button>
+          {skillArray.map((skill, index) => (
+            <p className='bg-red-500 text-white' key={index}>{skill}</p>
+          ))}
         </div>
 
         {/* Benefits */}
@@ -193,15 +223,18 @@ const CreateJob = () => {
           <textarea
             rows="6"
             name="description"
-            value={''}
+           
             className="textarea textarea-bordered w-full"
             placeholder="Write job description..."
             required
           ></textarea>
         </div>
+        <div>
+            <ProfileUpload/>
+        </div>
 
         <div className="md:col-span-2">
-          <button className="btn btn-primary w-full">
+          <button className=" bg-black text-white px-3 py-2 cursor-pointer w-full">
             Post Job
           </button>
         </div>
