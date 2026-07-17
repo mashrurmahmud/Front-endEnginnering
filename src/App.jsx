@@ -15,6 +15,7 @@ import Job from './Components/DashBoard/Job'
 import JobLayou from './Components/JobLayOut/JobLayou'
 import CreateJob from './Components/CreateJobform/CreateJob'
 import Login from './Components/LoginForm'
+import Home from './Components/Home'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -24,6 +25,8 @@ function App() {
    <BrowserRouter>
    <Routes>
      <Route path='/' element={<HomeLayOut/>}>
+
+       <Route path='/' element={<Home/>}/>
       
 
      </Route>

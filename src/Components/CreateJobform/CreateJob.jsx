@@ -3,9 +3,27 @@ import { useForm } from 'react-hook-form';
 import { set } from 'zod';
 import ProfileUpload from './CreateIconProfile';
 import { useJobCreate } from '../../../hook';
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod';
+
+
+const job = z.object({
+   title:z.string({error:"Title is required"}).nonempty({error:"Title is required"}).min(3,{error:"Title must be at least 3 characters"}).max(20,{error:"Title must be at most 20 characters"}),
+   company:z.string({error:"Company is required"}).nonempty({error:"Company is required"}).min(3,{error:"Company must be at least 3 characters"}).max(20,{error:"Company must be at most 20 characters"}),
+   type:z.string({error:"Type is required"}).nonempty({error:"Type is required"}).min(3,{error:"Type must be at least 3 characters"}).max(20,{error:"Type must be at most 20 characters"}),
+   location:z.string({error:"Location is required"}).nonempty({error:"Location is required"}).min(3,{error:"Location must be at least 3 characters"}).max(20,{error:"Location must be at most 20 characters"}),
+   salary:z.string({error:"Salary is required"}).nonempty({error:"Salary is required"}).min(3,{error:"Salary must be at least 3 characters"}).max(20,{error:"Salary must be at most 20 characters"}),
+   skills:z.array(z.string({error:"Skills is required"})).nonempty({error:"Skills is required"}).min(1,{error:"Skills must be at least 1 characters"}).max(20,{error:"Skills must be at most 20 characters"}),
+   description:z.string({error:"Description is required"}).nonempty({error:"Description is required"}).min(3,{error:"Description must be at least 3 characters"}).max(20,{error:"Description must be at most 20 characters"}),
+   experience:z.array(z.string({error:"Experience is required"})).nonempty({error:"Experience is required"}).min(1,{error:"Experience must be at least 1 characters"}).max(20,{error:"Experience must be at most 20 characters"}),
+
+})
+
 
 const CreateJob = () => {
-    const {register,handleSubmit, formState:{errors}} = useForm()
+    const {register,handleSubmit, formState:{errors}} = useForm({
+       resolver: zodResolver(job)
+    })
 
     const [imgUrl, setImagurl] = useState('')
     const[skillArray, setSkillArray] = useState([])
@@ -43,7 +61,7 @@ const CreateJob = () => {
 
     }
 
-    const onsubmit  = (data,e)=>{
+    const onsubmit  = async(data,e)=>{
         
 
         console.log(`data`,data)
@@ -55,6 +73,8 @@ const CreateJob = () => {
         setExperience('');
         
         e.target.reset()
+
+        const response = await cretorJob.mutate()
 
         
     

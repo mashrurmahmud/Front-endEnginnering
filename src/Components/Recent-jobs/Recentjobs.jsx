@@ -1,17 +1,21 @@
 import React from 'react';
 import { useGetJob } from '../../../hook';
+import Items from './Items';
 
 const Recentjobs = () => {
 
-    const {data:Jobs} = useGetJob();
-    console.log(Jobs)
+    const {data} = useGetJob();
+    console.log(data?.data?.jobs)
     
     
     return (
-        <div>
+        <div className='container mx-auto '>
             {
-                Jobs?.map(job=>(<div key={job._id}>{job.title}</div>))
+
+               data?.data?.jobs.slice(0,6).map((job)=><Items key={job._id} job={job}/>)
+                
             }
+           
             
         </div>
     );
