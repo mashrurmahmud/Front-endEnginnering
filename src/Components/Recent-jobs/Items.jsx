@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Items = ({job}) => {
     const{title, location, type, salary,  logo,  
-vacancies, company} =job
+vacancies, company, _id} =job
 
 
 
@@ -16,8 +17,9 @@ vacancies, company} =job
 
            </div>
            <div>
-           <p className='font-bold text-[23px]'> {company}</p>
+           <Link to={`/job/jobinfo/${_id}`}> <p className='font-bold text-[23px]'> {title}</p></Link>
            <button className='bg-sky-500 text-white py-2 px-4'>{type}</button>
+
             </div>
 
 

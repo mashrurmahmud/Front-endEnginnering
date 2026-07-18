@@ -34,6 +34,9 @@ const Register = () => {
 
   
 
+
+  
+
   const agree = watch("terms",false);
 
 

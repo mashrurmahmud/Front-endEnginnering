@@ -20,8 +20,20 @@ export const createJob = async(data)=>{
 }
 
 
+
+
+
 export const getJobs = async()=>{
     const response = await jobaxiosInstance.get("/get-jobs");
     return response;
 }
+
+
+export const getJobsInfo = async(id)=>{
+    const response = await jobaxiosInstance.get(`/get-job/${id}`);
+    return response;
+
+}
+
+
 

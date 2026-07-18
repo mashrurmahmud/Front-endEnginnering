@@ -16,6 +16,7 @@ import JobLayou from './Components/JobLayOut/JobLayou'
 import CreateJob from './Components/CreateJobform/CreateJob'
 import Login from './Components/LoginForm'
 import Home from './Components/Home'
+import JobInfo from './Components/Job-info/JobInfo'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,9 +31,12 @@ function App() {
       
 
      </Route>
-     <Route path='/job/create-job' element={<JobLayou/>}>
+     <Route path='/job' element={<JobLayou/>}>
 
       <Route path='/job/create-job' element={<CreateJob/>}/>
+      <Route path='/job/jobinfo/:id' element={<JobInfo/>}/>
+
+      
 
       
 

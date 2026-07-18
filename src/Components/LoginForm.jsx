@@ -8,12 +8,17 @@ import { loginUser } from "../../ALLapi";
 import Swal from "sweetalert2";
 
 
+
+
+
 const user = z.object({
     email:z.string().email({error:"Invalid email"}).nonempty({error:"Email is required"}),
     password:z.string().nonempty({error:"Password is required"}).min(6,{error:"Password must be at least 6 characters"}),
 })
 
 const Login = () => {
+   
+  
     const {register, handleSubmit, formState:{errors}} = useForm({
         resolver: zodResolver(user)
 
