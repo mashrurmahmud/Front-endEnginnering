@@ -1,8 +1,9 @@
 import axios from "axios"
-import { axiosInstance, jobaxiosInstance } from "./client"
+import { applyAxiosInstance, axiosInstance, jobaxiosInstance } from "./client"
 
 
 export const registerUser = async(data)=>{
+    console.log(data)
   
     const response = await axiosInstance.post("/register", data);
     return response;
@@ -49,6 +50,28 @@ export const getUserAPi = async()=>{
     });
     return response
 }
+
+
+export const getApply = async(jobId)=>{
+   
+
+    const response = await applyAxiosInstance.post('/apply-job',{jobId:jobId},{
+        withCredentials: true
+    });
+    return response
+}
+
+export const showApply = async()=>{
+
+    const response = await applyAxiosInstance.get('/get-applications',{
+        withCredentials: true
+    });
+    return response
+    
+}
+        
+
+
 
 
 

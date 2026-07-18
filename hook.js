@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { jobaxiosInstance } from "./client"
 import Swal from "sweetalert2";
-import { getJobs, getJobsInfo } from "./ALLapi";
+import { getJobs, getJobsInfo, showApply } from "./ALLapi";
 
 export const useJobCreate = ()=>{
     return useMutation({
@@ -37,6 +37,15 @@ export const useGetjobsInfo = (id)=>{
         },
         onSuccess:(data)=>{
             console.log(data,"Data fetched successfully");
+        }
+    })
+}
+
+export const useSHowApply = ()=>{
+    return useQuery({
+        queryKey:["jobs-apply-info"],
+        queryFn: async()=>{
+            return await showApply();
         }
     })
 }

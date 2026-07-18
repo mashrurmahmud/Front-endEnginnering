@@ -1,13 +1,16 @@
 
 
 import React from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useGetjobsInfo } from '../../../hook';
 import { useStrore } from '../../store/useStore';
+import { getApply, getUserAPi } from '../../../ALLapi';
+import Swal from 'sweetalert2';
 
 const JobInfo = () => {
     const {id} = useParams();
     const {user_profile} = useStrore();
+    const navigate = useNavigate()
     
 
 
@@ -17,19 +20,51 @@ const JobInfo = () => {
 
     const {data} = useGetjobsInfo(id);
     
-    const handleApply = (id)=>{
-        if(user_profile){
+    const handleApply = async(id)=>{
 
-            return 
+       try{
+          const res = await getApply(id);
+          console.log(res?.data?.message)
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: res?.data?.message,
+              showConfirmButton: false,
+              timer: 1500,
+          });
+
+       }catch(err){
+          console.log(err?.message);
+
+          Swal.fire({
+              position: "center",
+              icon: "success",
+              title: err?.response?.data?.message,
+              showConfirmButton: false,
+              timer: 1500,
+          });
+
+       }
+
+        
+
+        
 
 
-        }else{
-            return <Navigate to="/auth/login" />
-        }    
+
+
+        
+
+        
+        
+        if(user_profile === null){
+            return navigate("/auth/login")   
 
 
 
     }
+
+}
    
     
 

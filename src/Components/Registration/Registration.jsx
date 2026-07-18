@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm,  } from "react-hook-form";
 import {
   FaUser,
@@ -27,12 +27,18 @@ const user = z.object({
 
 const Register = () => {
 
-  const { user_profile}  = useStrore()
+  const { user_profile,setUser, fetchUser}  = useStrore();
+  console.log(user_profile,"User profile")
   const [showPassword, setShowPassword] = useState(false);
   const {register, handleSubmit, watch, formState:{errors}, } = useForm({
     resolver:zodResolver(user)
 
   });
+
+
+  useEffect(()=>{
+    fetchUser();
+  },[fetchUser])
 
 
   
@@ -60,6 +66,7 @@ const Register = () => {
 
 
     const {terms, ...rest} = data;
+    console.log(rest)
 
    try{
 
@@ -74,17 +81,19 @@ const Register = () => {
             footer: "<a href=\"#\">Why do I have this issue?</a>"
         });
 
+        setUser(response?.data?.user)
+
 
     }
 
    }catch(error){
-     console.log(error)
+     console.log(error?.message)
         
 
         Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: error.response.data.message,
+        text:"Something went wrong",
         footer: "<a href=\"#\">Why do I have this issue?</a>"
 });
 

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 
 const Header = () => {
-  const {user_profile, logout, fetchUser} = useStrore();
+  const {user_profile, logout, fetchUser,loading} = useStrore();
   console.log(user_profile)
 
   useEffect(()=>{

@@ -18,7 +18,7 @@ export const jobaxiosInstance = axios.create({
 
 
 export const applyAxiosInstance = axios.create({
-    baseURL:import.meta.env.ITE_BASE_URL_APPLY,
+    baseURL:import.meta.env.VITE_BASE_URL_APPLY,
     headers:{
         "Content-Type": "application/json",
     },
