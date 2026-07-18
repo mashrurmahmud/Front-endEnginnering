@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -17,9 +17,14 @@ import CreateJob from './Components/CreateJobform/CreateJob'
 import Login from './Components/LoginForm'
 import Home from './Components/Home'
 import JobInfo from './Components/Job-info/JobInfo'
+import ProtectedRouted from './Components/ProtectedRoute/ProtectedRouted'
+import { useStrore } from './store/useStore'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+ 
+
+ 
 
   return (
    <>
@@ -33,7 +38,7 @@ function App() {
      </Route>
      <Route path='/job' element={<JobLayou/>}>
 
-      <Route path='/job/create-job' element={<CreateJob/>}/>
+      <Route path='/job/create-job' element={<ProtectedRouted><CreateJob/></ProtectedRouted>}/>
       <Route path='/job/jobinfo/:id' element={<JobInfo/>}/>
 
       
@@ -48,7 +53,7 @@ function App() {
        
      </Route>
      <Route path='/dashboard' element={<Dashboard/>}>
-      <Route path='/dashboard/basic-info' element={<BasicInfo/>}/>
+      <Route path='/dashboard/basic-info' element={<ProtectedRouted><BasicInfo/></ProtectedRouted>}/>
       <Route path='/dashboard/jobs' element={<Job/>}/>
 
       

@@ -1,7 +1,17 @@
 import { Link } from "react-router-dom";
+import { useStrore } from "../store/useStore";
+import { useEffect } from "react";
 
 
 const Header = () => {
+  const {user_profile, logout, fetchUser} = useStrore();
+  console.log(user_profile)
+
+  useEffect(()=>{
+    fetchUser()
+  },[fetchUser])
+
+  
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="navbar flex justify-between container mx-auto  p-4 items-center max-w-7xl  px-4">
@@ -33,7 +43,8 @@ const Header = () => {
         {/* Right */}
         <div className="navbar-end flex gap-3">
 
-         <button className="bg-sky-700 w-[150px] h-auto px-3 py-2 rounded-xl">
+          {!user_profile?<>
+            <button className="bg-sky-700 w-[150px] h-auto px-3 py-2 rounded-xl">
              <Link
             to="/auth/login"
             className="btn btn-outline"
@@ -50,6 +61,16 @@ const Header = () => {
             Sign Up
           </Link>
         </button>
+          </>:<>
+            <button onClick={logout} className="bg-black text-white cursor-pointer w-[150px] h-auto px-3 py-2 rounded-xl">
+           
+            Log out
+         
+        </button>
+
+          </>}
+
+       
 
         </div>
 

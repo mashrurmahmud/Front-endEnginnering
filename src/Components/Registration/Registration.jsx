@@ -14,6 +14,7 @@ import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerUser } from "../../../ALLapi";
 import Swal from "sweetalert2";
+import { useStrore } from "../../store/useStore";
 
 
 const user = z.object({
@@ -25,6 +26,8 @@ const user = z.object({
 })
 
 const Register = () => {
+
+  const { user_profile}  = useStrore()
   const [showPassword, setShowPassword] = useState(false);
   const {register, handleSubmit, watch, formState:{errors}, } = useForm({
     resolver:zodResolver(user)

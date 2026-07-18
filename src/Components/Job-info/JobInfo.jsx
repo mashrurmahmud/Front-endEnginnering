@@ -1,11 +1,14 @@
 
 
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { useGetjobsInfo } from '../../../hook';
+import { useStrore } from '../../store/useStore';
 
 const JobInfo = () => {
     const {id} = useParams();
+    const {user_profile} = useStrore();
+    
 
 
     
@@ -14,7 +17,19 @@ const JobInfo = () => {
 
     const {data} = useGetjobsInfo(id);
     
-    console.log(data?.data?.jobhunter);
+    const handleApply = (id)=>{
+        if(user_profile){
+
+            return 
+
+
+        }else{
+            return <Navigate to="/auth/login" />
+        }    
+
+
+
+    }
    
     
 
@@ -66,7 +81,9 @@ const JobInfo = () => {
                 <h1 className='mt-5'>Expericene:<span className='text-red-500 ml-3'>{data?.data?.jobhunter?.experience}</span>
                  </h1>
 
-                <h1>Salary:<span className='text-red-500 ml-3'>{data?.data?.jobhunter?.salary}</span></h1>  
+                <h1>Salary:<span className='text-red-500 ml-3'>{data?.data?.jobhunter?.salary}</span></h1>
+
+                <button onClick={()=>handleApply(data?.data?.jobhunter?._id)} className='bg-sky-500 text-white w-[200px] h-auto p-3 cursor-pointer'>Apply</button>  
 
             </div>
            </div>

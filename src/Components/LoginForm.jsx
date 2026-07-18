@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import *  as z from 'zod'
 import { loginUser } from "../../ALLapi";
 import Swal from "sweetalert2";
+import { useStrore } from "../store/useStore";
 
 
 
@@ -17,6 +18,12 @@ const user = z.object({
 })
 
 const Login = () => {
+
+  const {setUser, fetchUser} = useStrore();
+
+  useEffect(()=>{
+    fetchUser()
+  },[fetchUser])
    
   
     const {register, handleSubmit, formState:{errors}} = useForm({
@@ -35,8 +42,11 @@ const Login = () => {
         icon: "success",
         title: res?.data?.message,
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
+        
 });
+       console.log(res?.data?.user)
+       setUser(res?.data?.user)
 
    navigate('/')
 
@@ -49,7 +59,7 @@ const Login = () => {
         });
     }
     
-     
+    await fetchUser(); 
      
   }
 

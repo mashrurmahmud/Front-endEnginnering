@@ -5,7 +5,7 @@ import Items from './Items';
 const Recentjobs = () => {
 
     const {data} = useGetJob();
-    console.log(data?.data?.jobs)
+    
     
     
     return (
