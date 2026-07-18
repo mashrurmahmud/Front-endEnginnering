@@ -19,6 +19,7 @@ import Home from './Components/Home'
 import JobInfo from './Components/Job-info/JobInfo'
 import ProtectedRouted from './Components/ProtectedRoute/ProtectedRouted'
 import { useStrore } from './store/useStore'
+import Contact from './Components/Contact'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -40,6 +41,7 @@ function App() {
 
       <Route path='/job/create-job' element={<ProtectedRouted><CreateJob/></ProtectedRouted>}/>
       <Route path='/job/jobinfo/:id' element={<JobInfo/>}/>
+      <Route path='/job/contact-us' element={<Contact/>}/>
 
       
 
