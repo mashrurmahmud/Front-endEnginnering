@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 const Header = () => {
   const {user_profile, logout, fetchUser,loading} = useStrore();
-  console.log(user_profile)
+  
 
   useEffect(()=>{
     fetchUser()
@@ -32,8 +32,7 @@ const Header = () => {
           <ul className="menu flex  menu-horizontal gap-2 font-medium">
             <li className="p-3"><Link to="/">Home</Link></li>
             <li className="p-3"><Link to="/job/all-jobs">Find Jobs</Link></li>
-            <li className="p-3"><Link to="/companies">Companies</Link></li>
-            <li className="p-3"><Link to="/about">About</Link></li>
+            
             <li className="p-3"><Link to="/job/contact-us">Contact</Link></li>
             <li className="p-3"><Link to="/job/create-job">Create-Jobs</Link></li>
            {
