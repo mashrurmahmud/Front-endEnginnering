@@ -3,12 +3,9 @@ import Header from '../Header';
 import { NavLink, Outlet } from 'react-router-dom';
 import Footer from '../Footer';
 import { X } from 'lucide-react';
-import { useStore } from 'zustand';
-import { useStrore } from '../../store/useStore';
 
 const Dashboard = () => {
-    const {user_profile} = useStrore();
-    const [open, setOpen] = useState(false);
+      const [open, setOpen] = useState(false);
     const menu =[
         {
         name:"Dashboard",
@@ -54,13 +51,22 @@ const Dashboard = () => {
 
         <nav className="mt-5 flex flex-col gap-2 px-4">
 
-         {
-          menu?.map(me =>{
-            if(me.private ){}
-           
-          })
-         }
-        
+          {menu.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `rounded-lg px-4 py-3 transition
+                ${
+                  isActive
+                    ? "bg-cyan-500 text-white"
+                    : "hover:bg-slate-800"
+                }`
+              }
+            >
+              {item.icon} {item.name}
+            </NavLink>
+          ))}
 
         </nav>
       </aside>
