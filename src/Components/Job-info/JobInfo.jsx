@@ -91,25 +91,15 @@ const JobInfo = () => {
               <p>Location: {data?.data?.jobhunter?.location}</p>
             <div>
                 <h1>Requirements:</h1>
-                <ul className='list-disc ml-5'>
-                    {
-                        data?.data?.jobhunter?.requirements.map((req)=> <li>{req}</li>)
-                    }
-                </ul>
+               
 
                 <h1>Responsibilties:</h1>
-                  <ul className='list-disc ml-5'>
-                    {
-                        data?.data?.jobhunter?.requirements.map((req)=> <li>{req}</li>)
-                    }
-                </ul>
+                 
             </div>
             <div>
                 <h1>Benifits:</h1>
                  <ul className='list-disc ml-5'>
-                {
-                     data?.data?.jobhunter?.responsibilities.map((req)=> <li>{req}</li>)
-                }
+                
 
                 </ul>
 

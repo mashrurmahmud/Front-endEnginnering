@@ -16,7 +16,7 @@ export const loginUser = async(data)=>{
 
 
 export const createJob = async(data)=>{
-    const response = await jobaxiosInstance.post("/job", data, {withCredentials: true});
+    const response = await jobaxiosInstance.post("/create-job", data, {withCredentials: true});
     return response;
 }
 
@@ -29,6 +29,10 @@ export const getJobs = async()=>{
     return response;
 }
 
+export const Sort_Jobs = async()=>{
+    const response = await jobaxiosInstance.get(`/sort-jobs?sort=salary`);
+    return response;
+}
 
 export const getJobsInfo = async(id)=>{
     const response = await jobaxiosInstance.get(`/get-job/${id}`);
@@ -70,8 +74,6 @@ export const showApply = async()=>{
     
 }
         
-
-
 
 
 

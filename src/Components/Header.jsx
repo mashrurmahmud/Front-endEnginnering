@@ -31,12 +31,14 @@ const Header = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu flex  menu-horizontal gap-2 font-medium">
             <li className="p-3"><Link to="/">Home</Link></li>
-            <li className="p-3"><Link to="/jobs">Find Jobs</Link></li>
+            <li className="p-3"><Link to="/job/all-jobs">Find Jobs</Link></li>
             <li className="p-3"><Link to="/companies">Companies</Link></li>
             <li className="p-3"><Link to="/about">About</Link></li>
-            <li className="p-3"><Link to="/contact">Contact</Link></li>
+            <li className="p-3"><Link to="/job/contact-us">Contact</Link></li>
             <li className="p-3"><Link to="/job/create-job">Create-Jobs</Link></li>
-            <li className="p-3"><Link to="/dashboard/basic-info">Dashboard</Link></li>
+           {
+            user_profile?<li className="p-3"><Link to="/dashboard">Dashboard</Link></li>:''
+           }
           </ul>
         </div>
 

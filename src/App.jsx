@@ -20,6 +20,7 @@ import JobInfo from './Components/Job-info/JobInfo'
 import ProtectedRouted from './Components/ProtectedRoute/ProtectedRouted'
 import { useStrore } from './store/useStore'
 import Contact from './Components/Contact'
+import JobShort from './Components/JobSort/JobShort'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -42,6 +43,7 @@ function App() {
       <Route path='/job/create-job' element={<ProtectedRouted><CreateJob/></ProtectedRouted>}/>
       <Route path='/job/jobinfo/:id' element={<JobInfo/>}/>
       <Route path='/job/contact-us' element={<Contact/>}/>
+      <Route path='/job/all-jobs' element={<JobShort/>}/>
 
       
 
